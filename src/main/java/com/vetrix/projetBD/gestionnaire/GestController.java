@@ -7,6 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/gestionnaire")
+@CrossOrigin("*")
 @Tag(name = "Gestionnaire")
 public class GestController {
     private final GestService service;

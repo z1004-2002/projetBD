@@ -8,6 +8,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/facture")
 @Tag(name = "Facture")
+@CrossOrigin("*")
 public class FactureController {
     private final FactureService service;
 

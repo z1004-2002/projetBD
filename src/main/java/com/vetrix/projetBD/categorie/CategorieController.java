@@ -8,11 +8,14 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/categorie")
+@CrossOrigin("*")
 @Tag(name = "Categorie")
 public class CategorieController {
     private final CategorieService service;
-    public CategorieController(CategorieService service) {
+    private final CategirieRepository repository;
+    public CategorieController(CategorieService service, CategirieRepository repository) {
         this.service = service;
+        this.repository = repository;
     }
     @GetMapping
     public List<Categotie> getCategorie(){
@@ -21,6 +24,10 @@ public class CategorieController {
     @GetMapping(path = "/{id}")
     public Optional<Categotie> getCat(@PathVariable int id) throws IllegalAccessException {
         return service.getCat(id);
+    }
+    @GetMapping(path = "/nombre")
+    public long getNombreCat(){
+        return repository.count();
     }
     @PostMapping(path = "/add")
     public Categotie addCat(@RequestBody Categotie categotie){

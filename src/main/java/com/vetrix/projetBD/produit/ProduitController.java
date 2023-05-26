@@ -7,12 +7,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/produit")
+@CrossOrigin("*")
 @Tag(name = "Produit")
 public class ProduitController {
     private final ProduitService service;
+    private final ProduitRepository repository;
 
-    public ProduitController(ProduitService service) {
+    public ProduitController(ProduitService service, ProduitRepository repository) {
         this.service = service;
+        this.repository = repository;
     }
 
     @GetMapping(path = "/{id}")
@@ -26,6 +29,18 @@ public class ProduitController {
     @PostMapping(path = "/add")
     public Produit addPro(@RequestBody Produit produit){
         return service.addProd(produit);
+    }
+    @GetMapping(path = "/nombre")
+    public int getNombre(){
+        return (int) repository.count();
+    }
+    @GetMapping(path = "/nombre/{cat}")
+    public int getCatNombre(@PathVariable Integer cat){
+        return Math.toIntExact(repository.catCount(cat));
+    }
+    @GetMapping(path = "/categorie/{idCat}")
+    public List<Produit> getByCategorie(@PathVariable int idCat){
+        return repository.getByCat(idCat);
     }
     @PutMapping(path = "/update/{id}")
     public Produit updatePro(@PathVariable int id,@RequestBody Produit produit){

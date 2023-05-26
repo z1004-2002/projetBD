@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/commande")
+@CrossOrigin("*")
 @Tag(name = "Commande")
 public class CommandeController {
     private final CommandeService service;
