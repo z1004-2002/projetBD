@@ -18,12 +18,12 @@ import java.sql.Timestamp;
 public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCommande;
+    private int idCom;
     private Timestamp dateCommande;
     private BigDecimal montant;
-    private String nom_client;
-    private String telephone_client;
-    private String adresse_client;
+    private String nomClient;
+    private String mobile;
+    private String adresse;
     private String commentaire;
     private byte livre;
 }

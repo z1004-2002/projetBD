@@ -22,7 +22,7 @@ public class CommandeService {
         List<CommandeDto> commandeDtos = new ArrayList<>();
         List<Commande> commandes = repository.findAll();
         for (Commande comm:commandes){
-            commandeDtos.add(getCom(comm.getIdCommande()));
+            commandeDtos.add(getCom(comm.getIdCom()));
         }
         return commandeDtos;
     }
@@ -30,12 +30,12 @@ public class CommandeService {
         Commande commande = repository.findById(id).get();
         CommandeDto commandeDto = new CommandeDto();
 
-        commandeDto.setIdCommande(commande.getIdCommande());
+        commandeDto.setIdCommande(commande.getIdCom());
         commandeDto.setDateCommande(commande.getDateCommande());
         commandeDto.setMontant(commande.getMontant());
-        commandeDto.setNom_client(commande.getNom_client());
-        commandeDto.setTelephone_client(commande.getTelephone_client());
-        commandeDto.setAdresse_client(commande.getAdresse_client());
+        commandeDto.setNom_client(commande.getNomClient());
+        commandeDto.setTelephone_client(commande.getMobile());
+        commandeDto.setAdresse_client(commande.getAdresse());
         commandeDto.setCommentaire(commande.getCommentaire());
         commandeDto.setLivre(commande.getLivre());
 
@@ -70,7 +70,7 @@ public class CommandeService {
         Commande com = repository.save(commande);
         for (ProdCom prodCom: commandeDto.getProduits()){
             lineComRepository.save(new LineCommande(
-                    com.getIdCommande(),
+                    com.getIdCom(),
                     prodCom.getCodePro(),
                     prodCom.getQuantite(),
                     prodCom.getTaille(),
@@ -87,9 +87,9 @@ public class CommandeService {
             c.setDateCommande(commande.getDateCommande());
             c.setMontant(commande.getMontant());
             c.setCommentaire(commande.getCommentaire());
-            c.setNom_client(commande.getNom_client());
-            c.setAdresse_client(commande.getAdresse_client());
-            c.setTelephone_client(commande.getTelephone_client());
+            c.setNomClient(commande.getNomClient());
+            c.setAdresse(commande.getAdresse());
+            c.setMobile(commande.getMobile());
             c.setLivre(commande.getLivre());
             return repository.save(c);
         });
