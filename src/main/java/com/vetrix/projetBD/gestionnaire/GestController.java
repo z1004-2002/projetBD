@@ -22,6 +22,11 @@ public class GestController {
     public Gestionnaire getGest(@PathVariable("id") int id){
         return service.getGest(id);
     }
+
+    @GetMapping(path = "/byLogin/{login}")
+    public Gestionnaire getGestByLogin(@PathVariable("login") String login){
+        return service.getGestByLoggin(login);
+    }
     @PostMapping(path = "/add")
     public Gestionnaire addGest(@RequestBody Gestionnaire gest){
         return service.addGest(gest);

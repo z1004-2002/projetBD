@@ -11,10 +11,11 @@ import javax.persistence.*;
 public class Gestionnaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idGes;
-    private String nomGes;
-    private int typeGes;
+    private int idGest;
+    private String nomGest;
+    private int typeGest;
     private String login;
     private String pwd;
     private int actif;
+    private String mobile;
 }
