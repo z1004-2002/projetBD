@@ -33,7 +33,7 @@ public class CategorieController {
     public Categotie addCat(@RequestBody Categotie categotie){
         return service.addCat(categotie);
     }
-    @PutMapping(path = "/update/{id}")
+    /*@PutMapping(path = "/update/{id}")
     public Categotie updateCat(@PathVariable int id, @RequestBody Categotie categotie) throws IllegalAccessException {
         service.updateCat(id, categotie);
         return categotie;
@@ -42,5 +42,5 @@ public class CategorieController {
     public String deleteCat(@PathVariable int id) throws IllegalAccessException {
         service.deleteCat(id);
         return "deleted";
-    }
+    }*/
 }

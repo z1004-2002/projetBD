@@ -1,6 +1,8 @@
 package com.vetrix.projetBD.produit;
 
 import com.vetrix.projetBD.categorie.CategirieRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ public class ProduitService {
         produitDto.setPrix(prod.getPrix());
         produitDto.setQte(prod.getQte());
         produitDto.setDescription(prod.getDescription());
-        produitDto.setCodeFour(prod.getCodeFour());
+        produitDto.setCodeArrivage(prod.getCodeArrivage());
         produitDto.setActif(prod.getActif());
         produitDto.setCategorie(categirieRepository.findById(prod.getIdCategorie()).get());
         produitDto.setDateInsertion(prod.getDateInsertion());
@@ -34,13 +36,28 @@ public class ProduitService {
         produitDto.setPromo(prod.getPromo());
         produitDto.setSize1(prod.getSize1());
         produitDto.setSize2(prod.getSize2());
-        produitDto.setAge(prod.getAge());
+        produitDto.setTypeSize(prod.getTypeSize());
         return produitDto;
     }
 
     public List<ProduitDto> getProduit(){
         List<ProduitDto> produitDtos = new ArrayList<>();
         for (Produit prod : repository.findAll()){
+            produitDtos.add(getProduit(prod.getCodePro()));
+        }
+        return produitDtos;
+    }
+
+    public List<ProduitDto> getProductPagination(int offset,int sizePage){
+        List<ProduitDto> produitDtos = new ArrayList<>();
+        for (Produit prod : repository.findAll(PageRequest.of(offset, sizePage))){
+            produitDtos.add(getProduit(prod.getCodePro()));
+        }
+        return produitDtos;
+    }
+    public List<ProduitDto> getProductPaginationSort(int offset,int sizePage, String field){
+        List<ProduitDto> produitDtos = new ArrayList<>();
+        for (Produit prod : repository.findAll(PageRequest.of(offset, sizePage).withSort(Sort.by(field)))){
             produitDtos.add(getProduit(prod.getCodePro()));
         }
         return produitDtos;
@@ -74,7 +91,7 @@ public class ProduitService {
             p.setPrix(prod.getPrix());
             p.setQte(prod.getQte());
             p.setDescription(prod.getDescription());
-            p.setCodeFour(prod.getCodeFour());
+            p.setCodeArrivage(prod.getCodeArrivage());
             p.setActif(prod.getActif());
             p.setIdCategorie(prod.getIdCategorie());
             p.setDateInsertion(prod.getDateInsertion());
@@ -83,7 +100,7 @@ public class ProduitService {
             p.setPromo(prod.getPromo());
             p.setSize1(prod.getSize1());
             p.setSize2(prod.getSize2());
-            p.setAge(prod.getAge());
+            p.setTypeSize(prod.getTypeSize());
             return repository.save(p);
         } );
         return prod;
