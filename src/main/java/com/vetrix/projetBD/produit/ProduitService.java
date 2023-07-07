@@ -25,7 +25,7 @@ public class ProduitService {
         produitDto.setPrix(prod.getPrix());
         produitDto.setQte(prod.getQte());
         produitDto.setDescription(prod.getDescription());
-        produitDto.setCodeFour(prod.getCodeFour());
+        produitDto.setCodeArrivage(prod.getCodeArrivage());
         produitDto.setActif(prod.getActif());
         produitDto.setCategorie(categirieRepository.findById(prod.getIdCategorie()).get());
         produitDto.setDateInsertion(prod.getDateInsertion());
@@ -34,7 +34,7 @@ public class ProduitService {
         produitDto.setPromo(prod.getPromo());
         produitDto.setSize1(prod.getSize1());
         produitDto.setSize2(prod.getSize2());
-        produitDto.setAge(prod.getAge());
+        produitDto.setTypeSize(prod.getTypeSize());
         return produitDto;
     }
 
@@ -74,7 +74,7 @@ public class ProduitService {
             p.setPrix(prod.getPrix());
             p.setQte(prod.getQte());
             p.setDescription(prod.getDescription());
-            p.setCodeFour(prod.getCodeFour());
+            p.setCodeArrivage(prod.getCodeArrivage());
             p.setActif(prod.getActif());
             p.setIdCategorie(prod.getIdCategorie());
             p.setDateInsertion(prod.getDateInsertion());
@@ -83,7 +83,7 @@ public class ProduitService {
             p.setPromo(prod.getPromo());
             p.setSize1(prod.getSize1());
             p.setSize2(prod.getSize2());
-            p.setAge(prod.getAge());
+            p.setTypeSize(prod.getTypeSize());
             return repository.save(p);
         } );
         return prod;

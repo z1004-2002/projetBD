@@ -24,7 +24,7 @@ public class Produit {
     private BigDecimal prix;
     private int qte;
     private String description;
-    private String codeFour;
+    private String codeArrivage;
     private int actif;
     private int idCategorie;
     private Date dateInsertion;
@@ -33,5 +33,5 @@ public class Produit {
     private int promo;
     private int size1;
     private int size2;
-    private int age;
+    private int typeSize;
 }

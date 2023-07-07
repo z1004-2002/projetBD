@@ -19,7 +19,7 @@ public class ProduitDto {
     private BigDecimal prix;
     private int qte;
     private String description;
-    private String codeFour;
+    private String codeArrivage;
     private int actif;
     private Categotie categorie;
     private Date dateInsertion;
@@ -28,5 +28,5 @@ public class ProduitDto {
     private int promo;
     private int size1;
     private int size2;
-    private int age;
+    private int typeSize;
 }
