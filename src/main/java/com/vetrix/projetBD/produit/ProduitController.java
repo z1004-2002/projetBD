@@ -45,6 +45,10 @@ public class ProduitController {
         List<ProduitDto> allProduct = service.getProductPaginationSort(offset, sizePage,field);
         return new APIResoponse<>(allProduct.size(),allProduct);
     }
+    @GetMapping(path = "/categorie/{idCat}/pagination/{offset}/{sizePage}")
+    public List<Produit> getByCategoriePagination(@PathVariable int idCat){
+        return repository.getByCat(idCat);
+    }
 
     @PostMapping(path = "/add")
     public Produit addPro(@RequestBody Produit produit){

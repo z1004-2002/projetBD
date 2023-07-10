@@ -27,4 +27,5 @@ public class Facture {
     private int idCaissiere;
     private BigDecimal capital;
     private BigDecimal tva;
+
 }

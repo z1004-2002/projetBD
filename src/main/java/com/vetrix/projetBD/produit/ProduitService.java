@@ -50,7 +50,7 @@ public class ProduitService {
 
     public List<ProduitDto> getProductPagination(int offset,int sizePage){
         List<ProduitDto> produitDtos = new ArrayList<>();
-        for (Produit prod : repository.findAll(PageRequest.of(offset, sizePage))){
+        for (Produit prod : repository.findAll(PageRequest.of(offset, sizePage).withSort(Sort.by("qte").descending()))){
             produitDtos.add(getProduit(prod.getCodePro()));
         }
         return produitDtos;

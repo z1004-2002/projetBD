@@ -33,14 +33,10 @@ public class CategorieController {
     public Categotie addCat(@RequestBody Categotie categotie){
         return service.addCat(categotie);
     }
-    /*@PutMapping(path = "/update/{id}")
-    public Categotie updateCat(@PathVariable int id, @RequestBody Categotie categotie) throws IllegalAccessException {
-        service.updateCat(id, categotie);
-        return categotie;
-    }
-    @DeleteMapping(path = "/delete/{id}")
-    public String deleteCat(@PathVariable int id) throws IllegalAccessException {
+
+    @DeleteMapping(path = "/delete")
+    public String deleteCat(@RequestParam("id") int id) throws IllegalAccessException {
         service.deleteCat(id);
         return "deleted";
-    }*/
+    }
 }

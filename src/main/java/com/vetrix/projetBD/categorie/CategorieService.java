@@ -1,5 +1,6 @@
 package com.vetrix.projetBD.categorie;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,13 +21,10 @@ public class CategorieService {
             throw new IllegalAccessException("categotie not found");
         return repository.findById(id);
     }
-    public void updateCat(int id, Categotie categotie) throws IllegalAccessException {
-        if (!repository.existsById(id))
-            throw new IllegalAccessException("categotie not found");
-        repository.findById(id).map(c -> {
-            c.setNomCat(categotie.getNomCat());
-            return repository.save(c);
-        });
+    public Categotie updateCat(Integer id, Categotie categotie) throws IllegalAccessException {
+        Categotie existingCat = repository.findById(id).get();
+        BeanUtils.copyProperties(categotie, existingCat, "id");
+        return repository.save(existingCat);
     }
     public void deleteCat(int id) throws IllegalAccessException {
         if (!repository.existsById(id))
