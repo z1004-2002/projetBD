@@ -48,13 +48,13 @@ public class ProduitController {
     }
 
     @PutMapping(path = "/update/quantity/add/{id}")
-    public void addQte(@PathVariable("id") int id,@RequestBody int numberToAdd){
-        service.addQte(id, numberToAdd);
+    public void addQte(@PathVariable("id") int id,@RequestParam(name = "number") int numberToAdd, @RequestParam(name = "idGest") int idGest){
+        service.addQte(id, numberToAdd, idGest);
     }
 
     @PutMapping(path = "/update/quantity/sub/{id}")
-    public void subQte(@PathVariable("id") int id,@RequestBody int numberToAdd){
-        service.subQte(id, numberToAdd);
+    public void subQte(@PathVariable("id") int id,@RequestParam(name = "number") int numberToSub, @RequestParam(name = "idGest") int idGest){
+        service.subQte(id, numberToSub, idGest);
     }
     @DeleteMapping(path = "/delete/{id}")
     public void deletePro(@PathVariable int id){
