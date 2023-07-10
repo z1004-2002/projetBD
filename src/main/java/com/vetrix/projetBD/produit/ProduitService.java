@@ -88,6 +88,21 @@ public class ProduitService {
         } );
         return prod;
     }
+
+    public void addQte(int id, int numberToAdd){
+        Produit prod = repository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Product not found"));
+        prod.setQte(prod.getQte() + numberToAdd);
+        repository.save(prod);
+    }
+
+    public void subQte(int id, int numberToSub){
+        Produit prod = repository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Product not found"));
+        prod.setQte(prod.getQte() - numberToSub);
+        repository.save(prod);
+    }
+
     public void deleteProd(int id){
         if(!repository.existsById(id))
             throw new IllegalStateException("Product not found");

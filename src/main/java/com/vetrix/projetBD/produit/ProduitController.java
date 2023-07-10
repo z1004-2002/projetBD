@@ -46,6 +46,16 @@ public class ProduitController {
     public Produit updatePro(@PathVariable int id,@RequestBody Produit produit){
         return service.updateProd(id,produit);
     }
+
+    @PutMapping(path = "/update/quantity/add/{id}")
+    public void addQte(@PathVariable("id") int id,@RequestBody int numberToAdd){
+        service.addQte(id, numberToAdd);
+    }
+
+    @PutMapping(path = "/update/quantity/sub/{id}")
+    public void subQte(@PathVariable("id") int id,@RequestBody int numberToAdd){
+        service.subQte(id, numberToAdd);
+    }
     @DeleteMapping(path = "/delete/{id}")
     public void deletePro(@PathVariable int id){
         service.deleteProd(id);
