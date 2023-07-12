@@ -1,11 +1,14 @@
 package com.vetrix.projetBD.produit;
 
 import com.vetrix.projetBD.categorie.CategirieRepository;
+import com.vetrix.projetBD.gestionStock.GestionStock;
+import com.vetrix.projetBD.gestionStock.GestionStockRepo;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -14,9 +17,12 @@ public class ProduitService {
     private final ProduitRepository repository;
     private final CategirieRepository categirieRepository;
 
-    public ProduitService(ProduitRepository repository, CategirieRepository categirieRepository) {
+    private final GestionStockRepo stockRepository;
+
+    public ProduitService(ProduitRepository repository, CategirieRepository categirieRepository, GestionStockRepo stockRepository) {
         this.repository = repository;
         this.categirieRepository = categirieRepository;
+        this.stockRepository = stockRepository;
     }
     public ProduitDto getProduit(int id){
         ProduitDto produitDto = new ProduitDto();
@@ -105,6 +111,27 @@ public class ProduitService {
         } );
         return prod;
     }
+
+    public void addQte(int id, int numberToAdd, int idGest){
+        Produit prod = repository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Product not found"));
+        prod.setQte(prod.getQte() + numberToAdd);
+        repository.save(prod);
+        stockRepository.save(
+                new GestionStock(numberToAdd,java.time.LocalDateTime.now(),1,idGest,id)
+        );
+    }
+
+    public void subQte(int id, int numberToSub, int idGest){
+        Produit prod = repository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Product not found"));
+        prod.setQte(prod.getQte() - numberToSub);
+        repository.save(prod);
+        stockRepository.save(
+          new GestionStock(numberToSub,java.time.LocalDateTime.now(),0,idGest,id)
+        );
+    }
+
     public void deleteProd(int id){
         if(!repository.existsById(id))
             throw new IllegalStateException("Product not found");

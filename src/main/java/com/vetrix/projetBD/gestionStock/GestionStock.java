@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -19,5 +20,16 @@ public class GestionStock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idStock;
     private int qte;
-    private Date dateStock;
+    private LocalDateTime dateStock;
+    private int operation;
+    private int idGest;
+    private int codePro;
+
+    public GestionStock(int qte, LocalDateTime dateStock, int operation, int idGest, int codePro) {
+        this.qte = qte;
+        this.dateStock = dateStock;
+        this.operation = operation;
+        this.idGest = idGest;
+        this.codePro = codePro;
+    }
 }
