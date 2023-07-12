@@ -16,6 +16,7 @@ public class Gestionnaire {
     private int typeGest;
     private String login;
     private String pwd;
+    private String mobile;
     private int actif;
     private String mobile;
 }

@@ -31,13 +31,12 @@ public class GestController {
     public Gestionnaire addGest(@RequestBody Gestionnaire gest){
         return service.addGest(gest);
     }
-    @PutMapping(path = "/update/{id}")
-    public Gestionnaire updateGest(@PathVariable int id,@RequestBody Gestionnaire gest){
+    @PutMapping(path = "/update")
+    public Gestionnaire updateGest(@RequestParam("id") int id,@RequestBody Gestionnaire gest){
         return service.updateGest(id, gest);
     }
-    @DeleteMapping(path = "/delete/{id}")
-    public String deleteGest(@PathVariable int id){
-        service.deleteGest(id);
-        return "delete";
+    @GetMapping("/")
+    public Gestionnaire getBylogin(@RequestParam("login") String login){
+        return service.findByLogin(login);
     }
 }

@@ -14,6 +14,6 @@ public interface ProduitRepository extends JpaRepository<Produit,Integer> {
     @Query("select count(p) from Produit p where p.idCategorie = ?1")
     Long catCount(int cat);
 
-    @Query("Select p from Produit p where p.idCategorie = ?1")
+    @Query("Select p from Produit p where p.idCategorie = ?1 ORDER BY p.qte DESC")
     List<Produit> getByCat(int idCat);
 }

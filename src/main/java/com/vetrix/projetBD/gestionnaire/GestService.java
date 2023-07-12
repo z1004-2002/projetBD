@@ -43,6 +43,11 @@ public class GestService{
         });
         return gestionnaire;
     }
+
+    public Gestionnaire findByLogin(String login){
+        return repository.findByLogin(login);
+    }
+
     public void deleteGest(int id){
         if (!repository.existsById(id))
             throw new IllegalArgumentException("not found gestionnaire");

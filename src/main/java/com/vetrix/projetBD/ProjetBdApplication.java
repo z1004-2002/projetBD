@@ -8,8 +8,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties({com.vetrix.projetBD.photo.PhotoStorageProperties.class})
 public class ProjetBdApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ProjetBdApplication.class, args);
-	}
+		public static void main(String[] args) {
+			SpringApplication.run(ProjetBdApplication.class, args);
+		}
 
 }

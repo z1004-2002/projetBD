@@ -16,8 +16,8 @@ import javax.persistence.*;
 public class LineFacture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_l_fac")
-    private int id;
+    @Column(name = "idLFac")
+    private int idLFac;
     private int codePro;
     private int idFac;
     private int prix;

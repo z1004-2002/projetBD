@@ -34,14 +34,14 @@ public class FactureService {
             lineFactRepository.save(
                     new LineFacture(
                             prodFac.getCodePro(),
-                            prodFac.getIdFac(),
+                            fac.getIdFac(),
                             prodFac.getPrix(),
                             prodFac.getQte()
                     )
             );
         }
 
-        return repository.save(facture);
+        return fac;
     }
     public List<FactureDto> getFac() {
         List<FactureDto> factureDtos = new ArrayList<>();

@@ -3,6 +3,8 @@ package com.vetrix.projetBD.produit;
 import com.vetrix.projetBD.categorie.CategirieRepository;
 import com.vetrix.projetBD.gestionStock.GestionStock;
 import com.vetrix.projetBD.gestionStock.GestionStockRepo;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -47,6 +49,21 @@ public class ProduitService {
     public List<ProduitDto> getProduit(){
         List<ProduitDto> produitDtos = new ArrayList<>();
         for (Produit prod : repository.findAll()){
+            produitDtos.add(getProduit(prod.getCodePro()));
+        }
+        return produitDtos;
+    }
+
+    public List<ProduitDto> getProductPagination(int offset,int sizePage){
+        List<ProduitDto> produitDtos = new ArrayList<>();
+        for (Produit prod : repository.findAll(PageRequest.of(offset, sizePage).withSort(Sort.by("qte").descending()))){
+            produitDtos.add(getProduit(prod.getCodePro()));
+        }
+        return produitDtos;
+    }
+    public List<ProduitDto> getProductPaginationSort(int offset,int sizePage, String field){
+        List<ProduitDto> produitDtos = new ArrayList<>();
+        for (Produit prod : repository.findAll(PageRequest.of(offset, sizePage).withSort(Sort.by(field)))){
             produitDtos.add(getProduit(prod.getCodePro()));
         }
         return produitDtos;

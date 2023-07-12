@@ -16,6 +16,6 @@ import javax.persistence.*;
 public class Categotie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCat;
+    private Integer idCat;
     private String nomCat;
 }

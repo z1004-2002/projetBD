@@ -22,10 +22,34 @@ public class ProduitController {
     public ProduitDto getProduit(@PathVariable int id){
         return service.getProduit(id);
     }
-    @GetMapping
+
+
+    /*@GetMapping
     public List<ProduitDto> getProduits(){
         return service.getProduit();
+    }*/
+
+    @GetMapping
+    public APIResoponse<List<ProduitDto>> getProduits(){
+        List<ProduitDto> allProduct = service.getProduit();
+        return new APIResoponse<>(allProduct.size(),allProduct);
     }
+
+    @GetMapping("/pagination/{offset}/{sizePage}")
+    public APIResoponse<List<ProduitDto>> getPro(@PathVariable int offset,@PathVariable int sizePage){
+        List<ProduitDto> allProduct = service.getProductPagination(offset, sizePage);
+        return new APIResoponse<>(allProduct.size(),allProduct);
+    }
+    @GetMapping("/paginationSort/{offset}/{sizePage}/{field}")
+    public APIResoponse<List<ProduitDto>> getProPageSort(@PathVariable int offset,@PathVariable int sizePage,@PathVariable String field){
+        List<ProduitDto> allProduct = service.getProductPaginationSort(offset, sizePage,field);
+        return new APIResoponse<>(allProduct.size(),allProduct);
+    }
+    @GetMapping(path = "/categorie/{idCat}/pagination/{offset}/{sizePage}")
+    public List<Produit> getByCategoriePagination(@PathVariable int idCat){
+        return repository.getByCat(idCat);
+    }
+
     @PostMapping(path = "/add")
     public Produit addPro(@RequestBody Produit produit){
         return service.addProd(produit);
@@ -34,6 +58,7 @@ public class ProduitController {
     public int getNombre(){
         return (int) repository.count();
     }
+
     @GetMapping(path = "/nombre/{cat}")
     public int getCatNombre(@PathVariable Integer cat){
         return Math.toIntExact(repository.catCount(cat));
