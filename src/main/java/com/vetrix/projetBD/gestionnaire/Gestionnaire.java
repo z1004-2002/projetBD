@@ -18,5 +18,4 @@ public class Gestionnaire {
     private String pwd;
     private String mobile;
     private int actif;
-    private String mobile;
 }
