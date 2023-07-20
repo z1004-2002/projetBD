@@ -22,6 +22,7 @@ public class GestController {
     public Gestionnaire getGest(@PathVariable("id") int id){
         return service.getGest(id);
     }
+
     @PostMapping(path = "/add")
     public Gestionnaire addGest(@RequestBody Gestionnaire gest){
         return service.addGest(gest);

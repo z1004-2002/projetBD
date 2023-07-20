@@ -23,6 +23,7 @@ public class GestService{
         return repository.findById(id).get();
     }
 
+
     public Gestionnaire updateGest(int id, Gestionnaire gestionnaire){
         if (!repository.existsById(id))
             throw new IllegalArgumentException("not found gestionnaire");
